@@ -41,6 +41,6 @@ private:
 
         auto taking = m_solve(item_index + 1, free_weight - weight, items) + quantity;
 
-        return memo[item_index][free_weight] = min(taking, leaving);
+        return memo[item_index][free_weight] = max(taking, leaving);
     }
 };

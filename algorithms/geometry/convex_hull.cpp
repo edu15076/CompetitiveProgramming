@@ -7,17 +7,12 @@ using namespace std;
 #define endl "\n"
 #define x first
 #define y second
-#define INF 1000000
 
 typedef unsigned uint;
 typedef pair<int, int> Point;
 
 int sense(Point a, Point b, Point c) {
     return a.x * b.y + b.x * c.y + c.x * a.y - c.x * b.y - a.x * c.y - b.x * a.y;
-}
-
-bool compPoints(Point a, Point b) {
-    return a.y * b.x > a.x * b.y;
 }
 
 // Assuming that the points are already sorted
