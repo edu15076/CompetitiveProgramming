@@ -255,7 +255,7 @@ private:
                 mConstructDfs(graph, u, ++index, dist + 1, v);
                 mEulerTourLevels.push_back(dist);
                 mEulerTour.push_back(v);
-                ++index;
+                index++;
             }
     }
 };

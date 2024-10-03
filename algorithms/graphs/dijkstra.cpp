@@ -8,21 +8,26 @@ using namespace std;
 
 typedef unsigned uint;
 
-vector<uint> dijkstra(uint start, const vector<vector<pair<uint, uint>>> &g) {
+vector<uint> dijkstra(uint source, const vector<vector<pair<uint, uint>>> &g) {
     priority_queue<pair<uint, uint>, vector<pair<uint, uint>>, greater<>> pq;
-    pq.emplace(0, start);
+    pq.emplace(0, source);
 
     vector<uint> dist(g.size(), UINT32_MAX);
-    dist[start] = 0;
+    dist[source] = 0;
 
     while (not pq.empty()) {
-        auto [vw, v] = pq.top(); pq.pop();
+        auto [v_weight, v] = pq.top(); pq.pop();
 
-        for (auto [uw, u] : g[v])
-            if (uint w = vw + uw; dist[u] > w) {
-                dist[u] = w;
-                pq.emplace(w, u);
-            }
+        if (v_weight > dist[v])
+            continue;
+
+        for (auto [u_weight, u] : g[v]) {
+            uint w = v_weight + u_weight;
+            if (w >= dist[u])
+                continue;
+            dist[u] = w;
+            pq.emplace(w, u);
+        }
     }
 
     return dist;

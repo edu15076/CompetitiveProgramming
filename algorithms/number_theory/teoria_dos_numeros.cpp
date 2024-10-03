@@ -167,3 +167,13 @@ unsigned mod_pow(int base, unsigned exponent, int n) {
 
     return r ? mod(result * base, n) : result;
 }
+
+unsigned fast_pow(int base, unsigned exponent) {
+    if (not exponent)
+        return 1;
+
+    unsigned q {exponent >> 1}, r {exponent & 1};
+    unsigned result = fast_pow(base * base, q);
+
+    return r ? result * base : result;
+}
